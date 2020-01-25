@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wzoltan <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: wzoltan <wzoltan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 13:39:25 by wzoltan           #+#    #+#             */
-/*   Updated: 2019/09/28 13:40:45 by wzoltan          ###   ########.fr       */
+/*   Updated: 2020/01/25 17:17:38 by wzoltan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
-
+# include "fcntl.h"
+# include "sys/types.h"
+# include "sys/uio.h"
 void			*ft_memset(void *s, int c, size_t n);
 void			ft_bzero(void *s, size_t n);
 void			*ft_memcpy(void *dest, const void *src, size_t n);

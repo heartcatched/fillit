@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   algorithm.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cbriccan <cbriccan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/25 17:30:17 by cbriccan          #+#    #+#             */
+/*   Updated: 2020/01/25 17:30:19 by cbriccan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fillit.h"
 #include <stdio.h>
 
@@ -35,7 +47,7 @@ int     max_y(int *a)
 
 int     collision_grid(int grid_size, int *tet_id)
 {
-    if (max_x(tet_id) > grid_size || max_y(tet_id) > grid_size)
+    if (max_x(tet_id) >= grid_size || max_y(tet_id) >= grid_size)
         return (1);
     return (0);
 }
@@ -65,16 +77,18 @@ int     floor_of_sqrt(int n)
     i = 1;
     while (i * i < n)
         i++;
-    return (i);
+    return (i - 1);
 }
 int     start_size(t_tetris *list)
 {
     int     n;
 
     n = 1;
-    while (list->next)
+    while (list->next != NULL)
+    {
+        list = list->next;
         n++;
-
+    }
     return (2 * floor_of_sqrt(n));
 }
 
@@ -84,17 +98,15 @@ void    solution(t_tetris *list)
     int     size;
 
 
-    //size = start_size(list);
-    size = 3;
+    size = start_size(list);
     grid = create_grid(size);
     while (!(exempt(grid, list, size)))
     {
         free(grid);
         size++;
-        //printf("a");
         grid = create_grid(size);
     }
-    print(grid);
+    print(grid, size);
 }
 
 int     exempt(char **grid, t_tetris *list, int grid_size)
@@ -113,13 +125,13 @@ int     exempt(char **grid, t_tetris *list, int grid_size)
         {
             copy(tmp, list->tet_id);
             shift_yx(tmp, y, x);
-            print_mas(tmp, 8);
             if (insert_n_clear(tmp, list, grid, grid_size))
                 return (1);
             y++;
         }
         x++;
     }
+
     return (0);
 }
 
@@ -128,13 +140,15 @@ int     insert_n_clear(int  *tet_id, t_tetris *list, char **grid, int grid_size)
     if (!(collision(grid, grid_size, tet_id)))
     {
         insert(tet_id, grid, grid_size, list->c);
-        print(grid);
-        /*if (exempt(grid, list->next, grid_size))
+        //print(grid);
+        if (list->next == NULL)
+            return 1;
+        if (exempt(grid, list->next, grid_size))
         {
             free(tet_id);
             return (1);
         }
-        clear(tet_id, grid, grid_size);*/return(1);
+        clear(tet_id, grid, grid_size);  //return(1);
     }
     return (0);
 }
@@ -143,7 +157,6 @@ void    insert(int *tet_id, char **grid, int grid_size, char c)
 {
     int     k;
 
-    //print_mas(tet_id, 8);
     k = 0;
     while (k < 8)
     {
@@ -192,16 +205,16 @@ void    copy(int *a, int *b)
     }
 }
 
-void    print(char **grid)
+void    print(char **grid, int grid_size)
 {
     int     i;
     int     j;
 
     i = 0;
-    while (grid[i])
+    while (i < grid_size)
     {
         j = 0;
-        while (grid[i][j])
+        while (j < grid_size)
         {
             ft_putchar(grid[i][j]);
             j++;

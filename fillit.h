@@ -1,9 +1,7 @@
 #ifndef FILLIT_H
 # define FILLIT_H
-#include "get_next_line.h"
+//#include "get_next_line.h"
 #include "libft.h"
-#include <stdlib.h>
-#include <stdio.h>
 int		read_one(const int fd, char *line);
 void	ft_exit(void);
 int		h_count(char *line);
@@ -53,7 +51,7 @@ void    insert(int *tet_id, char **grid, int grid_size, char c);
 void    clear(int *tet_id, char **grid, int grid_size);
 void    shift_yx(int *tet_id, int y, int x);
 void    copy(int *a, int *b);
-void    print(char **grid);
+void    print(char **grid, int grid_size);
 char	**create_grid(int grid_size);
 void    print_mas(int *a, int n);
 

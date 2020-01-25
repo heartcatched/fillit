@@ -225,13 +225,12 @@ t_tetris      *check_structure(void)
 
 int     main(void)
 {
+    int     i = 0;
     t_tetris      *list;
 
     validity();
     list = check_structure();
-
     //ft_print_list(list);
     solution(list);
-
     return (0);
 }

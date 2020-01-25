@@ -5,7 +5,6 @@ int    min_x(int     *a)
 {
     int     i;
     int     min;
-
     min = a[0];
     i = 0;
     while (i < 8)
@@ -52,7 +51,7 @@ void        shift(int   *a)
         }
         i++;
     }
-} 
+}
 
 int     me(int *a, int b[8])
 {

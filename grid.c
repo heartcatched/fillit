@@ -22,6 +22,6 @@ char	**create_grid(int grid_size)
 		tm[i][j] = '\0';
 		i++;
 	}
-	print(tm);
+	//print(tm, grid_size);
 	return (tm);
 }
