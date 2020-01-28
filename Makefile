@@ -1,41 +1,38 @@
+NAME			= fillit
 
-NAME	= fillit
+CC				= gcc
+CFLAGS			= -Wall -Wextra -Werror
 
-SRC		= ./src/main.c  \
-		  ./src/check.c \
-		  ./src/read.c  \
-		  ./src/map.c   \
-		  ./src/solve.c \
-		  ./src/ft_strsub.c \
-		  ./src/ft_memdel.c \
-		  ./src/ft_putendl_fd.c \
-		  ./src/ft_putstr_fd.c \
-		  ./src/ft_putendl.c \
-		  ./src/ft_strlen.c \
-		  ./src/ft_strnew.c \
-		  ./src/ft_putchar_fd.c \
-		  ./src/ft_memset.c
+SRCS			= srcs/grid_ko.c \
+				  srcs/max_n_check.c \
+				  srcs/fillit.c \
+				  srcs/algorithm1.c \
+				  srcs/algorithm2.c \
+				  srcs/algorithm3.c \
 
-OBJ		= $(SRC:.c=.o)
+OBJS = $(subst .c,.o,$(subst srcs/,,$(SRCS)))
 
-INCLUDE = ./includes
 
-CC		= gcc
-
-CFLAGS	= -Wall -Wextra -Werror
 
 all: $(NAME)
 
-%.o:%.c
-	$(CC) $(CFLAGS) -I./$(INCLUDE) -o $@ -c $<
+$(NAME): lib $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L libft -lft
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -I$(INCLUDE)
+$(OBJS):
+	$(CC) $(CFLAGS) -c $(SRCS) -Iincludes/ -Ilibft/includes/
+
+lib:
+	make -C libft
 
 clean:
-	rm -rf $(OBJ)
+	/bin/rm -rf $(OBJS)
+	make -C libft clean
 
 fclean: clean
-	rm -rf $(NAME)
+	/bin/rm -rf $(NAME)
+	make -C libft fclean
 
 re: fclean all
+
+.PHONY: clean fclean all re jgengo
