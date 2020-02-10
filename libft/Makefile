@@ -19,7 +19,7 @@ O_FILES = *.o
 all: $(NAME)
 
 $(NAME):
-	gcc -Wall -Wextra -Werror -c $(SRC)
+	gcc  -c $(SRC)
 	ar rc $(NAME) $(O_FILES)
 	ranlib $(NAME)
 

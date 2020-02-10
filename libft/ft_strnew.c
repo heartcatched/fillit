@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wzoltan <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: wzoltan <wzoltan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 19:37:35 by wzoltan           #+#    #+#             */
-/*   Updated: 2019/09/19 19:48:46 by wzoltan          ###   ########.fr       */
+/*   Updated: 2020/01/30 19:02:59 by wzoltan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 char	*ft_strnew(size_t size)
 {
 	char	*str;
-	
+
 	str = (char*)malloc(size + 1);
 	if (str == NULL)
 		return (NULL);

@@ -50,6 +50,7 @@ void	solution(t_tetris *list)
 	}
 	print(grid, size);
 	free_grid(grid, size);
+	exit(EXIT_SUCCESS);
 }
 
 int		exempt(char **grid, t_tetris *list, int grid_size)
@@ -69,11 +70,15 @@ int		exempt(char **grid, t_tetris *list, int grid_size)
 			copy(tmp, list->tet_id);
 			shift_yx(tmp, y, x);
 			if (insert_n_clear(tmp, list, grid, grid_size))
+			{
+				free(tmp);
 				return (1);
+			}
 			y++;
 		}
 		x++;
 	}
+	free(tmp);
 	return (0);
 }
 

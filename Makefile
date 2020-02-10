@@ -1,7 +1,7 @@
 NAME			= fillit
 
 CC				= gcc
-CFLAGS			= -Wall -Wextra -Werror
+CFLAGS			=
 
 SRCS			= srcs/grid_ko.c \
 				  srcs/max_n_check.c \
@@ -9,6 +9,8 @@ SRCS			= srcs/grid_ko.c \
 				  srcs/algorithm1.c \
 				  srcs/algorithm2.c \
 				  srcs/algorithm3.c \
+				  srcs/main.c \
+				  srcs/list_n_exit.c
 
 OBJS = $(subst .c,.o,$(subst srcs/,,$(SRCS)))
 
