@@ -6,13 +6,13 @@
 /*   By: cbriccan <cbriccan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 13:39:25 by wzoltan           #+#    #+#             */
-/*   Updated: 2020/02/19 19:09:11 by cbriccan         ###   ########.fr       */
+/*   Updated: 2020/01/30 22:48:34 by cbriccan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# define BUFF_SIZE 1
+# define BUFF_SIZE 100
 
 # include "fcntl.h"
 # include "sys/types.h"

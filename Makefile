@@ -1,9 +1,9 @@
   
-NAME			= fillit
-
-CC				= gcc
-CFLAGS			= -Wall -Wextra -Werror
-
+NAME = fillit
+COMPILER = gcc
+FLAGS = -g -Wall -Wextra -Werror
+INC = -I includes/
+LIB = libft/libft.a
 SRCS			= grid_ko.c \
 				  max_n_check.c \
 				  fillit.c \
@@ -13,25 +13,24 @@ SRCS			= grid_ko.c \
 				  main.c \
 				  list_n_exit.c
 
-OBJS = $(SRCS:.c=.o)
+OBJ		= $(SRC:.c=.o)
 
-all: $(NAME)
+.PHONY: all clean fclean re
 
-$(NAME): lib $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L libft -lft
+%.o: %.c
+	@$(COMPILER) $(FLAGS) $(INC) -o $@ -c $<
 
-$(OBJS): %.o : %.c	includes/fillit.h
-	$(CC) $(CFLAGS) -c $(SRCS) -Iincludes/ -Ilibft/includes/
-
-lib:
-	make -C libft
+$(NAME): $(OBJ)
+	@make -C libft/
+	@$(COMPILER) $(FLAGS) -o $(NAME) $(OBJ) $(SRCS) $(INC) $(LIB)
 
 clean:
-	/bin/rm -rf $(OBJS)
-	make -C libft clean
+	@make -C libft clean
 
-fclean: clean
-	/bin/rm -rf $(NAME)
-	make -C libft fclean
+fclean:
+	@make -C libft fclean
+	@rm -f $(NAME)
 
 re: fclean all
+
+all: $(NAME)
